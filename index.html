@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concurso de Monólogos Científicos | CONCYTEC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+        theme: {
+            extend: {
+            colors: {
+                brand: '#F79131',   // Naranja
+                dark: '#7A2C8E',    // Morado
+                accent: '#4DB748',  // Verde claro
+            }
+            }
+        }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans">
+
+    <div class="bg-brand text-white py-3 px-4 sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto flex flex-col md:flex-row justify-center items-center gap-4">
+            <div class="flex items-center gap-2 font-bold uppercase tracking-wider">
+                <span class="animate-pulse">🔔</span> 
+                Cierre de postulación:
+            </div>
+            
+            <div id="countdown" class="flex gap-4 font-mono text-xl font-black">
+                <div class="flex flex-col items-center leading-none">
+                    <span id="days">00</span><span class="text-[10px] uppercase font-sans">Días</span>
+                </div>
+                <span>:</span>
+                <div class="flex flex-col items-center leading-none">
+                    <span id="hours">00</span><span class="text-[10px] uppercase font-sans">Hrs</span>
+                </div>
+                <span>:</span>
+                <div class="flex flex-col items-center leading-none">
+                    <span id="minutes">00</span><span class="text-[10px] uppercase font-sans">Min</span>
+                </div>
+                <span>:</span>
+                <div class="flex flex-col items-center leading-none">
+                    <span id="seconds">00</span><span class="text-[10px] uppercase font-sans">Seg</span>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <script>
+        const targetDate = new Date("May 31, 2026 23:59:59").getTime();
+
+        setInterval(() => {
+            const now = new Date().getTime();
+            const diff = targetDate - now;
+
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = d < 10 ? "0"+d : d;
+            document.getElementById("hours").innerText = h < 10 ? "0"+h : h;
+            document.getElementById("minutes").innerText = m < 10 ? "0"+m : m;
+            document.getElementById("seconds").innerText = s < 10 ? "0"+s : s;
+        }, 1000);
+    </script>
+
+
+
+    <header id="inicio" class="relative h-[80vh] flex items-center justify-center text-center text-white bg-slate-900">
+
+        <video 
+            autoplay 
+            muted 
+            loop 
+            playsinline 
+            class="absolute inset-0 w-full h-full object-cover opacity-40">
+            <source src="assets/video/monologosccyt.mp4" type="video/mp4">
+            Tu navegador no soporta videos.
+        </video>
+
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-slate-900/50"></div>
+
+        <div class="relative z-10 px-4 animate__animated animate__fadeInUp">
+            <h1 class="text-5xl md:text-5xl font-bold mb-2">Concurso de <br> <span class="text-brand">Monólogos Científicos</span> <br></h1>
+            <p class="text-4xl md:text-4xl mb-2 max-w-3xl mx-auto ">para Clubes de Ciencia y Tecnología</p>
+            <p class="text-4xl md:text-4xl mb-2 max-w-3xl mx-auto">Huánuco 2026</p>
+            <p class="text-3xl md:text-3xl mb-6 max-w-2xl mx-auto">19 de mayo</p>
+            <div class="text-2xl flex flex-wrap justify-center gap-4 mb-8">
+                <a href="https://forms.gle/iGyXjXBfDPE73pDy9" target="_blank" class="bg-brand hover:opacity-70 text-white font-bold px-8 py-3 rounded-full  transition">&nbsp; POSTULA AQUÍ &nbsp;</a>
+            </div>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="##" target="_blank" class="border-2 border-white px-8 py-3 rounded-lg font-bold hover:bg-white hover:text-slate-900 transition">Bases</a>
+                <a href="##" target="_blank" class="border-2 border-white px-8 py-3 rounded-lg font-bold hover:bg-white hover:text-slate-900 transition">Charla informativa</a>
+                <a href="##" target="_blank" class="border-2 border-white px-8 py-3 rounded-lg font-bold hover:bg-white hover:text-slate-900 transition">Ediciones Previas</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="bases" class="py-20 container mx-auto px-6">
+        <h2 class="text-3xl font-bold text-center mb-6 text-dark">¿Cómo participar?</h2>
+        <p class="text-slate-600 mb-4 text-center">En esta edición solo podrán participar los estudiantes miembros de los clubes de ciencia y tecnología participantes del II Encuentro Internacional de Clubes de Ciencia y Tecnología.</p><br>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-white p-8 rounded-2xl shadow-xl hover:scale-105 transition transform border-t-4 border-accent">
+                <div class="text-red-600 mb-4 text-3xl">📄</div>
+                <h3 class="text-xl font-bold mb-2 text-dark">Bases del Concurso</h3>
+                <p class="text-slate-600 mb-4">Descarga los lineamientos técnicos y requisitos para participar.</p>
+                <a href="##" target=_blank class="text-brand font-bold hover:underline">Descargar PDF →</a>
+            </div>
+            <div class="bg-white p-8 rounded-2xl shadow-xl hover:scale-105 transition transform border-t-4 border-accent">
+                <div class="text-red-600 mb-4 text-3xl">👩‍🏫</div>
+                <h3 class="text-xl font-bold mb-2">Charla informativa</h3>
+                <p class="text-slate-600 mb-4">Mira la charla informativa para participar.</p>
+                <a href="##" target=_blank class="text-brand font-bold hover:underline">Ver video →</a>
+                <!-- <a href="##" target=_blank class="text-brand font-bold hover:underline">Presentación →</a> -->
+            </div>
+            <div class="bg-white p-8 rounded-2xl shadow-xl hover:scale-105 transition transform border-t-4 border-accent">
+                <div class="text-red-600 mb-4 text-3xl">👩‍💻</div>
+                <h3 class="text-xl font-bold mb-2">Ediciones previas</h3>
+                <p class="text-slate-600 mb-4">Puedes revisar las ediciones anteriores.</p>
+                <a href="##" target=_blank class="text-brand font-bold hover:underline">Ver videos →</a>
+            </div>
+        </div>
+    </section>
+    
+
+    <section class="py-16 bg-slate-50">
+    <div class="container mx-auto px-6 text-center">
+        <h2 class="text-3xl font-bold text-dark mb-4">Instituciones involucradas</h2>
+        <div class="h-1 w-20 bg-accent mx-auto mb-10"></div>
+        
+        <div class="flex flex-wrap justify-center items-center gap-12 opacity-60 grayscale hover:grayscale-0 transition-all">
+            <img href="https://www.gob.pe/concytec" src="assets/logos/logo-concytec.png" alt="Concytec" class="h-20" >
+            <img href="https://www.fecyt.es/" src="assets/logos/fecyt.png" alt="FECYT" class="h-40" >
+            <img href="https://www.drehuanuco.gob.pe/" src="assets/logos/drehuanuco.png" alt="Dirección Regional de Educación de Huánuco" class="h-20" >
+        </div>
+        
+        <div class="mt-12 p-8 bg-white rounded-2xl border-dashed border-2 border-accent/30 max-w-3xl mx-auto">
+            <p class="text-dark italic text-lg">
+                "Buscamos que la ciencia sea parte de la cultura popular peruana, transformando el conocimiento en historias que inspiren."
+            </p>
+        </div>
+    </div>
+    </section>
+
+    <footer class="bg-dark text-white pt-10 pb-8">
+        <div class="container mx-auto px-6 grid md:grid-cols-3 gap-12 pb-4">
+            <div>
+                <h3 class="text-brand font-bold text-xl mb-4">Concurso de Monólogos científicos</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                    Para Clubes de Ciencia y Tecnología
+                </p>
+            </div>
+            <div>
+
+            </div>
+            <div>
+                <h4 class="font-bold mb-4 uppercase text-accent tracking-widest text-sm">Contacto</h4>
+                <p class="text-slate-400 text-xs">📍 Av. del Aire 485, San Borja, Lima</p>
+                <p class="text-slate-400 text-xs">☎️ +51-1-399-0030 anexo 1220</p>
+                <p class="text-slate-400 text-xs">📧 popularizacion@concytec.gob.pe</p>
+                <div class="flex gap-4 mt-4">
+                    <span class="text-xl hover:text-brand cursor-pointer">FB</span>
+                    <span class="text-xl hover:text-brand cursor-pointer">IG</span>
+                    <span class="text-xl hover:text-brand cursor-pointer">YT</span>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="text-center mt-8 text-xs text-slate-500 uppercase tracking-widest">
+            © 2026 CONCYTEC | Unidad de popularización de la ciencia, tecnología e innovación
+        </div> -->
+    </footer>
+
+</body>
+</html>
