@@ -2,24 +2,13 @@
 <html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width-90%, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Concurso de Monólogos Científicos | CONCYTEC</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-        theme: {
-            extend: {
-            colors: {
-                brand: '#F79131',   // Naranja
-                dark: '#7A2C8E',    // Morado
-                accent: '#4DB748',  // Verde claro
-            }
-            }
-        }
-        }
-    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-slate-50 text-slate-900 font-sans">
 
@@ -47,39 +36,11 @@
                     <span id="seconds">00</span><span class="text-[10px] uppercase font-sans">Seg</span>
                 </div>
             </div>
-            
         </div>
     </div>
 
-    <script>
-        const targetDate = new Date("June 14, 2026 23:59:59").getTime();
-
-        setInterval(() => {
-            const now = new Date().getTime();
-            const diff = targetDate - now;
-
-            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const s = Math.floor((diff % (1000 * 60)) / 1000);
-
-            document.getElementById("days").innerText = d < 10 ? "0"+d : d;
-            document.getElementById("hours").innerText = h < 10 ? "0"+h : h;
-            document.getElementById("minutes").innerText = m < 10 ? "0"+m : m;
-            document.getElementById("seconds").innerText = s < 10 ? "0"+s : s;
-        }, 1000);
-    </script>
-
-
-
     <header id="inicio" class="relative h-[80vh] flex items-center justify-center text-center text-white bg-slate-900">
-
-        <video 
-            autoplay 
-            muted 
-            loop 
-            playsinline 
-            class="absolute inset-0 w-full h-full object-cover opacity-40">
+        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover opacity-40">
             <source src="assets/video/monologosccyt.mp4" type="video/mp4">
             Tu navegador no soporta videos.
         </video>
@@ -90,42 +51,79 @@
             <h1 class="text-4xl md:text-6xl font-bold mb-2 mt-64">Concurso de <br> <span class="text-brand">Monólogos Científicos</span> <br></h1>
             <p class="text-3xl md:text-4xl mb-2 max-w-3xl mx-auto font-bold">para Clubes de Ciencia y Tecnología</p>
             <p class="text-3xl md:text-4xl mb-6 max-w-3xl mx-auto">Huánuco 2026</p>
+            
             <div class="text-2xl flex flex-wrap justify-center gap-4 mb-8">
-                <a href="https://forms.gle/iGyXjXBfDPE73pDy9" target="_blank" class="bg-accent hover:opacity-70 text-white font-bold px-8 py-3 rounded-full  transition">&nbsp; POSTULA AQUÍ &nbsp;</a>
+                <a href="https://forms.gle/iGyXjXBfDPE73pDy9" target="_blank" class="bg-accent hover:opacity-70 text-white font-bold px-8 py-3 rounded-full transition">&nbsp; POSTULA AQUÍ &nbsp;</a>
             </div>
+            
             <div class="flex flex-wrap justify-center gap-4 mb-10">
                 <a href="https://drive.google.com/file/d/1EVfzSwAVLrwFujyVyKBhA2230UtZdBE7/view" target="_blank" class="border-2 border-white px-8 py-3 rounded-lg font-bold hover:bg-white hover:text-slate-900 transition">Bases 2026</a>
-                <a href="#cronograma" class="border-2 border-white px-8 py-3 rounded-lg font-bold hover:bg-white hover:text-slate-900 transition">Cronograma</a>
-                <a href="#videos" class="border-2 border-white px-8 py-3 rounded-lg font-bold hover:bg-white hover:text-slate-900 transition">Galería de videos</a>
+                <a href="https://www.youtube.com/watch?v=CCsvvGtIRN0" target="_blank" class="border-2 border-white px-8 py-3 rounded-lg font-bold hover:bg-white hover:text-slate-900 transition">Taller de capacitación</a>
+                <a href="https://sites.google.com/concytec.gob.pe/pop/eiccyt" target="_blank" class="border-2 border-white px-8 py-3 rounded-lg font-bold hover:bg-white hover:text-slate-900 transition">Encuentro CCyT</a>
             </div>
-            <!-- <div class="text-2xl flex flex-wrap justify-center gap-4 mb-8">
-                <a href="##" target="_blank" class="bg-brand hover:opacity-70 text-white font-bold px-8 py-3 rounded-full  transition">&nbsp; CONOCE A LOS SELECCIONADOS &nbsp;</a>
-            </div> -->
         </div>
     </header>
 
+    <div class="sub-nav flex flex-wrap justify-center">
+        <a href="#mono">Presentación</a>
+        <a href="#alcance">Alcance</a>
+        <a href="#bases">¿Como participar?</a>
+        <a href="#cronograma">Cronograma</a>
+        <a href="#videos">Galería de videos</a>
+    </div>
+
+    <section id="mono" class="py-20 container mx-auto max-w-6xl px-6">
+        <h2 class="text-3xl font-bold text-center mb-6 text-dark">Presentación</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="bg-white p-8 rounded-2xl shadow-xl hover:scale-105 transition transform border-t-4 border-accent">
+                <h3 class="text-xl font-bold mb-2">Concurso</h3>
+                <p class="text-slate-600 mb-4">El concurso de <b>Monólogos Científicos</b> para Clubes de Ciencia y Tecnología, 
+                    es un espacio dedicado a fomentar la divulgación científica desde la edad escolar
+                    y promover las capacidades comunicativas entre los estudiantes miembros de los clubes.
+                    <br><br>El concurso es organizado por el Concytec y está diseñado para inspirar y motivar a los
+                    estudiantes miembros de los clubes de ciencia y tecnología, a participar activamente
+                    en la divulgación de sus áreas de indagación, a través de la preparación y presentación de monólogos científicos.
+                    <br><br>El presente concurso se llevará a cabo en el marco del <b>II Encuentro Internacional y II Encuentro de Clubes de
+                    Ciencia y Tecnología Huánuco 2026</b>, a realizarse el 19 de agosto de 2026 en la ciudad de Huánuco, región Huánuco.</p>
+            </div>
+        
+            <div class="bg-white p-8 rounded-2xl shadow-xl hover:scale-105 transition transform border-t-4 border-accent">
+                <h3 class="text-xl font-bold mb-2">Participación</h3>
+                <p class="text-slate-600 mb-4">Pueden participar estudiantes de <b>nivel secundario</b> (2° a 5° grado),
+                    de instituciones educativas públicas o privadas, que sean miembros de <b>clubes de ciencia y tecnología</b> 
+                    formalmente registrados en el Sigeccyt del Concytec, mediante una de las dos modalidades de participación:
+                    <br><br><b>Modalidad A.</b> Estudiantes de clubes de ciencia y tecnología de instituciones
+                    educativas inscritos en el II Encuentro Internacional y II Encuentro Nacional de Clubes de Ciencia y Tecnología
+                    Huánuco 2026.
+                    <br><br><b>Modalidad B.</b> Estudiantes de clubes de ciencia y tecnología de instituciones
+                    educativas de la región Huánuco.</p>
+            </div>
+        </div>
+    </section>
+
     <section id="bases" class="py-20 container mx-auto max-w-6xl px-6">
-        <h2 class="text-3xl font-bold text-center mb-6 text-dark">¿Cómo participar?</h2>
-        <p class="text-slate-600 mb-4 text-center">En esta edición pueden participar estudiantes miembros de los clubes de ciencia y tecnología de la <b>región Huánuco</b> y de los clubes inscritos en el <b>II Encuentro Internacional de Clubes de Ciencia y Tecnología.</b></p><br>
+        <h2 class="text-3xl font-bold text-center mb-6 text-dark">¿Cómo participar?</h2>       
         <div class="grid md:grid-cols-3 gap-8">
             <div class="bg-white p-8 rounded-2xl shadow-xl hover:scale-105 transition transform border-t-4 border-accent">
                 <div class="text-red-600 mb-4 text-3xl">📄</div>
                 <h3 class="text-xl font-bold mb-2">Bases del Concurso</h3>
                 <p class="text-slate-600 mb-4">Descarga los lineamientos técnicos y requisitos para participar.</p>
-                <a href="https://drive.google.com/file/d/1EVfzSwAVLrwFujyVyKBhA2230UtZdBE7/view" target=_blank class="text-brand font-bold hover:underline">Descargar PDF →</a>
+                <a href="https://drive.google.com/file/d/1EVfzSwAVLrwFujyVyKBhA2230UtZdBE7/view" target="_blank" class="text-brand font-bold hover:underline">Descargar PDF →</a>
             </div>
+            
             <div class="bg-white p-8 rounded-2xl shadow-xl hover:scale-105 transition transform border-t-4 border-accent">
                 <div class="text-red-600 mb-4 text-3xl">👩‍🏫</div>
                 <h3 class="text-xl font-bold mb-2">Taller de capacitación</h3>
-                <p class="text-slate-600 mb-4">Taller virtual de capacitación para la prepraración y exposición de monólogos científicos, a cargo de la especialista del Concytec, Dra. Myra Flores, química y divulgadora científica.</p>
-                <a href="https://youtu.be/CCsvvGtIRN0" target=_blank class="text-brand font-bold hover:underline">Video del Taller 2026 →</a><br>
-                <a href="https://www.youtube.com/watch?v=UTrMew9HzUQ" target=_blank class="text-brand hover:underline">Video del Taller 2025 →</a>
+                <p class="text-slate-600 mb-4">Taller virtual de capacitación para la preparación y exposición de monólogos científicos, a cargo de la especialista del Concytec, Dra. Myra Flores, química y divulgadora científica.</p>
+                <a href="https://youtu.be/CCsvvGtIRN0" target="_blank" class="text-brand font-bold hover:underline">Video del Taller 2026 →</a><br>
+                <a href="https://www.youtube.com/watch?v=UTrMew9HzUQ" target="_blank" class="text-brand hover:underline">Video del Taller 2025 →</a>
             </div>
+            
             <div class="bg-white p-8 rounded-2xl shadow-xl hover:scale-105 transition transform border-t-4 border-accent">
                 <div class="text-red-600 mb-4 text-3xl">👩‍💻</div>
                 <h3 class="text-xl font-bold mb-2">Postulación</h3>
                 <p class="text-slate-600 mb-4">Para participar completa el siguiente formulario. La inscripción la realiza el docente asesor del club de ciencia y tecnología. </p>
-                <a href="https://forms.gle/iGyXjXBfDPE73pDy9" target=_blank class="text-brand font-bold hover:underline">Formulario →</a>
+                <a href="https://forms.gle/iGyXjXBfDPE73pDy9" target="_blank" class="text-brand font-bold hover:underline">Formulario →</a>
             </div>
         </div>
     </section>
@@ -133,7 +131,7 @@
     <section id="cronograma" class="py-10 container mx-auto max-w-3xl px-8">
         <h2 class="text-3xl font-bold text-center mb-8 text-dark">Cronograma</h2>
         <div class="grid grid-cols-1 gap-8 max-w-6xl">
-            <div class="bg- rounded-2xl shadow-xl overflow-hidden border-t-4 border-accent hover:scale-105 transition transform">
+            <div class="rounded-2xl shadow-xl overflow-hidden border-t-4 border-accent hover:scale-105 transition transform">
                 <table class="w-full text-left border-collapse">
                     <thead>
                         <tr class="bg-slate-50 border-b border-slate-200">
@@ -178,127 +176,37 @@
 
     <section id="videos" class="py-20 container mx-auto px-6">
         <h2 class="text-3xl font-bold text-center mb-10 text-dark">Galería de Videos</h2>
-        
         <div id="contenedor-videos" class="grid md:grid-cols-2 max-w-6xl gap-12 mx-auto">
             <p class="text-center col-span-full">Cargando videos...</p>
         </div>
     </section>
     
-
-    <script>
-        const SHEET_ID = '1zC2Fuzg4avjnql-gENAb-qqXZgoZxsJJIV0gihzCbtA';
-        const SHEET_NAME = 'Hoja 1'; 
-        const URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${SHEET_NAME}`;
-
-        fetch(URL)
-            .then(res => res.text())
-            .then(data => {
-                const json = JSON.parse(data.substr(47).slice(0, -2));
-                const rows = json.table.rows;
-                const contenedor = document.getElementById('contenedor-videos');
-                contenedor.innerHTML = ''; 
-
-                // .slice(1) le dice a JavaScript: "Corta el primer elemento y quédate con el resto"
-                rows.slice(1).forEach(row => {
-                    const idVideo = row.c[0].v;
-                    const titulo = row.c[1] ? row.c[1].v : "Sin título";
-                    const descripcion = row.c[2] ? row.c[2].v : "";
-
-                    // Función para manejar el error de imagen y cargar una de menor resolución si la HD no existe
-                    const thumbHD = `https://img.youtube.com/vi/${idVideo}/maxresdefault.jpg`;
-                    const thumbSD = `https://img.youtube.com/vi/${idVideo}/hqdefault.jpg`;
-
-                    const card = `
-                        <div class="bg-white rounded-2xl shadow-xl hover:scale-105 transition transform border-t-4 border-accent overflow-hidden flex flex-col">
-                            <div class="aspect-video relative group cursor-pointer bg-black overflow-hidden" 
-                                id="container-${idVideo}"
-                                onclick="loadVideo('${idVideo}')">
-                                
-                                <img src="${thumbSD}" 
-                                    onerror="this.src='${thumbHD}'" 
-                                    alt="${titulo}" 
-                                    class="w-full h-full object-cover object-center transform scale-[1.02] transition">
-                                
-                                <div class="absolute inset-0 flex items-center justify-center bg-black/10 group-hover:bg-black/40 transition">
-                                    <div class="bg-red-600 text-white w-12 h-12 flex items-center justify-center rounded-full shadow-lg group-hover:scale-110 transition transform">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 ml-0.5">
-                                            <path fill-rule="evenodd" d="M4.5 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" clip-rule="evenodd" />
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="p-6 flex-grow">
-                                <h3 class="text-xl font-bold mb-2 text-dark">${titulo}</h3>
-                                <p class="text-slate-600 text-sm leading-relaxed">${descripcion}</p>
-                            </div>
-                        </div>
-                    `;
-                        contenedor.innerHTML += card;
-                })
-            })
-            
-            .catch(err => {
-                console.error(err);
-                document.getElementById('contenedor-videos').innerHTML = '<p class="text-red-500 text-center col-span-full">Error al cargar los videos.</p>';
-            });
-
-        function loadVideo(id) {
-            const container = document.getElementById(`container-${id}`);
-            container.innerHTML = `
-                <iframe 
-                    class="w-full h-full" 
-                    src="https://www.youtube.com/embed/${id}?autoplay=1" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>`;
-        }
-
-
-    </script>
-
-
     <section class="py-16 bg-slate-50">
-    <div class="container mx-auto px-6 text-center">
-        <h2 class="text-3xl font-bold text-dark mb-4">Instituciones Organizadoras</h2>
-        <div class="h-1 w-20 bg-accent mx-auto mb-10"></div>
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold text-dark mb-4">Instituciones Organizadoras</h2>
+            <div class="h-1 w-20 bg-accent mx-auto mb-10"></div>
             <div class="flex flex-wrap justify-center items-center gap-12 opacity-60 grayscale hover:grayscale-0 transition-all">
-                <img href="https://www.gob.pe/concytec" src="assets/logos/logo-concytec.png" alt="Concytec" class="h-20">
-                <img href="https://www.iadb.org/es" src="assets/logos/bid.png" alt="Banco Interamericano de DesarrolloFECYT" class="imagen-circular h-20 w-20">
-                <!-- <img href="https://www.drehuanuco.gob.pe/" src="assets/logos/drehuanuco.png" alt="Dirección Regional de Educación de Huánuco" class="h-20" > -->
-                <!-- <img href="https://www.facebook.com/I.E.P.ISAAC.NEWTON/" src="assets/logos/ieisaacnewton.png" alt="Institución Educativa Isaac Newton de Huánuco" class="h-20" > -->
+                <img src="assets/logos/logo-concytec.png" alt="Concytec" class="h-20">
+                <img src="assets/logos/bid.png" alt="Banco Interamericano de Desarrollo" class="imagen-circular h-20 w-20">
             </div>
-
-        <!-- <h2 class="text-3xl font-bold text-dark mb-4 mt-16">Instituciones Aliadas</h2>
-        <div class="h-1 w-20 bg-accent mx-auto mb-10"></div>
-        
-        <div class="flex flex-wrap justify-center items-center gap-12 opacity-60 grayscale hover:grayscale-0 transition-all">
-            <img href="https://www.munihuanuco.gob.pe/" src="assets/logos/mphuanuco.png" alt="Municipalidad Provincial de Huánuco" class="w-40" >
-            <img href="https://ugelhuanuco.gob.pe/" src="assets/logos/ugelhuanuco.png" alt="Unidad de Gestión Educativa Huánuco" class="h-10" >
-            <img href="https://www.unheval.edu.pe/" src="assets/logos/unheval.png" alt="Universidad Nacional Hermilio Valdizán" class="h-10" >
-        </div> -->
-        
-        
-        <div class="mt-12 p-8 bg-white rounded-2xl border-dashed border-2 border-accent/30 max-w-3xl mx-auto">
-            <p class="text-dark italic text-lg">
-                "Promoviendo el intercambio de experiencias de educación no formal para potenciar las vocaciones científicas y la cultura de indagación desde la educación básica."
-            </p>
+            
+            <div class="mt-12 p-8 bg-white rounded-2xl border-dashed border-2 border-accent/30 max-w-3xl mx-auto">
+                <p class="text-dark italic text-lg">
+                    "Promoviendo el intercambio de experiencias de educación no formal para potenciar las vocaciones científicas y la cultura de indagación desde la educación básica."
+                </p>
+            </div>
         </div>
-    </div>
     </section>
 
     <footer class="bg-dark text-white pt-10 pb-8">
         <div class="container mx-auto px-6 grid md:grid-cols-3 gap-12 pb-4">
             <div>
-                <h3 class="text-brand font-bold text-sm mb-4">Concurso de Monólogos científicos para Clubes de Ciencia y Tecnología</h3>
+                <h3 class="text-brand font-bold text-sm mb-4 uppercase">Concurso de Monólogos científicos para Clubes de Ciencia y Tecnología</h3>
                 <p class="text-slate-400 text-sm leading-relaxed">
                     Espacio dedicado a fomentar la divulgación científica desde la edad escolar y promover las capacidades comunicativas entre los estudiantes miembros de los clubes.
                 </p>
             </div>
-            <div>
-
-            </div>
+            <div></div>
             <div>
                 <h4 class="font-bold mb-4 uppercase text-accent tracking-widest text-sm">Contacto</h4>
                 <p class="text-slate-400 text-sm">📍 Av. del Aire 485, San Borja, Lima</p>
@@ -312,61 +220,8 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="text-center mt-8 text-xs text-slate-500 uppercase tracking-widest">
-            © 2026 CONCYTEC | Unidad de popularización de la ciencia, tecnología e innovación
-        </div> -->
     </footer>
 
+    <script src="script.js"></script>
 </body>
 </html>
-
-<style>
-
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f0f2f5;
-    color: #333;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-th, td {
-    /* Quitamos los bordes verticales internos y dejamos solo una línea sutil abajo */
-    border-bottom: 1px solid #e2e8f0; 
-    padding: 14px;
-    text-align: center;
-    vertical-align: middle;
-}
-
-th {
-    background-color: #4DB748; /* Encabezado oscuro para mejor contraste */
-    color: white;
-    font-weight: bold;
-}
-
-/* Colores alternados por bloques (manualmente mediante clases) */
-.bloque-gris {
-    background-color: #f8fafc; /* Gris muy claro */
-}
-
-.bloque-blanco {
-    background-color: #ffffff;
-}
-
-.left-align {
-    text-align: left;
-}
-
-.check-verde {
-            /* Al ser plano, ahora puedes ponerle el color exacto que quieras */
-            color: #B4BD0E; /* Azul Tailwind */
-            font-size: 24px;
-            font-weight: bold;
-}
-
-</style>
