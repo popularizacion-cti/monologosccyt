@@ -105,3 +105,132 @@ function loadVideo(id) {
             allowfullscreen>
         </iframe>`;
 }
+
+
+// ---------
+// FINALISTAS
+// ----------
+
+
+document.addEventListener('DOMContentLoaded', async () => {
+    // ⚠️ REEMPLAZA ESTA URL CON EL ENLACE DE TU GOOGLE SHEET PUBLICADO COMO CSV
+    const sheetCSVUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRm8pZY0HkmM-i6o3UtwLrRLoE4fwRUQOjE9DIpZlzG67v2ywIjNChBogXEtenPxKPspCl_LCoJEFOP/pub?output=csv';
+    
+    const tbody = document.getElementById('tabla-participantes');
+
+    try {
+        const respuesta = await fetch(sheetCSVUrl);
+        
+        // El formato por defecto de Google Sheets al publicar en web es UTF-8, 
+        // lo que garantiza compatibilidad con tildes y eñes.
+        const datosCsv = await respuesta.text();
+        
+        // Dividir el CSV por filas manejando saltos de línea estándar
+        const filas = datosCsv.split(/\r?\n/);
+        if (filas.length === 0 || !filas[0].trim()) throw new Error("El archivo CSV está vacío.");
+
+        // 1. LEER LOS ENCABEZADOS DE LA HOJA (Primera fila)
+        // Usamos una función auxiliar para separar por comas respetando celdas con comillas
+        const encabezados = parsearFilaCSV(filas[0]).map(h => h.toLowerCase().trim());
+
+        // 2. BUSCAR LOS ÍNDICES DINÁMICAMENTE
+        // Cambia los textos de la derecha si en tu Excel los encabezados se llaman diferente
+        const indices = {
+            region: encabezados.indexOf('región'),
+            institucion: encabezados.indexOf('institución educativa'),
+            club: encabezados.indexOf('club de ciencia y tecnología'),
+            nombres: encabezados.indexOf('nombres y apellidos'),
+            grado: encabezados.indexOf('grado de estudios'),
+            titulo: encabezados.indexOf('título del monólogo'),
+            condicion: encabezados.indexOf('condición')
+        };
+
+        // Intentar búsqueda secundaria más flexible si no se encuentra con tildes
+        if (indices.region === -1) indices.region = encabezados.indexOf('region');
+        if (indices.institucion === -1) indices.institucion = encabezados.indexOf('institucion educativa');
+        if (indices.club === -1) indices.club = encabezados.indexOf('club de ciencia');
+        if (indices.titulo === -1) indices.titulo = encabezados.indexOf('titulo del monologo');
+        if (indices.condicion === -1) indices.condicion = encabezados.indexOf('condicion');
+
+        tbody.innerHTML = ''; // Limpiar el mensaje de "Cargando..."
+
+        // 3. PROCESAR LAS FILAS DE LOS 8 PARTICIPANTES (omitimos el encabezado fila 0)
+        let contadorParticipantes = 0;
+
+        for (let i = 1; i < filas.length; i++) {
+            if (!filas[i].trim()) continue; // Ignorar filas vacías
+            if (contadorParticipantes >= 8) break; // Limitar estrictamente a 8 participantes
+
+            const columnas = parsearFilaCSV(filas[i]);
+
+            // Extraer la información basándonos en los índices dinámicos detectados
+            const valorRegion = indices.region !== -1 ? columnas[indices.region] : '-';
+            const valorInstitucion = indices.institucion !== -1 ? columnas[indices.institucion] : '-';
+            const valorClub = indices.club !== -1 ? columnas[indices.club] : '-';
+            const valorNombres = indices.nombres !== -1 ? columnas[indices.nombres] : '-';
+            const valorGrado = indices.grado !== -1 ? columnas[indices.grado] : '-';
+            const valorTitulo = indices.titulo !== -1 ? columnas[indices.titulo] : '-';
+            const valorCondicion = indices.condicion !== -1 ? columnas[indices.condicion] : 'Registrado';
+
+            // Crear la fila HTML inyectando los datos de forma segura
+            const tr = document.createElement('tr');
+            tr.className = 'hover:bg-slate-50 transition-colors group';
+            
+            tr.innerHTML = `
+                <td class="py-4 px-6 text-slate-700 font-medium bg-slate-50/30">${valorRegion}</td>
+                <td class="py-4 px-6 text-slate-600 text-sm">${valorInstitucion}</td>
+                <td class="py-4 px-6 text-slate-600 text-sm italic">${valorClub}</td>
+                <td class="py-4 px-6 text-dark font-bold">${valorNombres}</td>
+                <td class="py-4 px-6 text-slate-600 font-medium text-center">${valorGrado}</td>
+                <td class="py-4 px-6 text-slate-700 font-medium leading-relaxed">${valorTitulo}</td>
+                <td class="py-4 px-6 text-center">
+                    <span class="inline-block px-3 py-1 bg-brand/10 text-brand font-bold text-xs uppercase tracking-wide rounded-full">
+                        ${valorCondicion}
+                    </span>
+                </td>
+            `;
+            tbody.appendChild(tr);
+            contadorParticipantes++;
+        }
+
+        if (contadorParticipantes === 0) {
+            tbody.innerHTML = `<tr><td colspan="7" class="py-6 px-6 text-center text-slate-500">No se encontraron registros válidos.</td></tr>`;
+        }
+
+    } catch (error) {
+        console.error('Error al cargar la hoja de cálculo:', error);
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="7" class="py-6 px-6 text-center text-red-500 font-medium">
+                    Error al cargar los participantes. Verifica el enlace de Google Sheets y los nombres de las columnas.
+                </td>
+            </tr>
+        `;
+    }
+});
+
+/**
+ * Función auxiliar para procesar una línea de CSV correctamente.
+ * Respeta comas internas si la celda está envuelta en comillas ("Texto, con comas")
+ * y remueve las comillas sobrantes al final.
+ */
+function parsearFilaCSV(linea) {
+    const resultado = [];
+    let celdaActual = '';
+    let dentroDeComillas = false;
+
+    for (let i = 0; i < linea.length; i++) {
+        const caracter = linea[i];
+
+        if (caracter === '"') {
+            dentroDeComillas = !dentroDeComillas; // Alternar estado
+        } else if (caracter === ',' && !dentroDeComillas) {
+            resultado.push(celdaActual.trim());
+            celdaActual = '';
+        } else {
+            celdaActual += caracter;
+        }
+    }
+    resultado.push(celdaActual.trim()); // Añadir la última celda
+    return resultado;
+}
