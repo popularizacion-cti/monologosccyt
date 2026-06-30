@@ -12,7 +12,7 @@
 </head>
 <body class="bg-slate-50 text-slate-900 font-sans">
 
-    <div class="bg-brand text-white py-3 px-4 sticky top-0 z-50 shadow-lg">
+    <!-- <div class="bg-brand text-white py-3 px-4 sticky top-0 z-50 shadow-lg">
         <div class="container mx-auto flex flex-col md:flex-row justify-center items-center gap-4">
             <div class="flex items-center gap-2 font-bold uppercase tracking-wider">
                 <span class="animate-pulse">🔔</span> 
@@ -37,7 +37,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <header id="inicio" class="relative h-[80vh] flex items-center justify-center text-center text-white bg-slate-900">
         <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover opacity-40">
@@ -53,7 +53,7 @@
             <p class="text-3xl md:text-4xl mb-6 max-w-3xl mx-auto">Huánuco 2026</p>
             
             <div class="text-2xl flex flex-wrap justify-center gap-4 mb-8">
-                <a href="https://forms.gle/iGyXjXBfDPE73pDy9" target="_blank" class="bg-accent hover:opacity-70 text-white font-bold px-8 py-3 rounded-full transition">&nbsp; POSTULA AQUÍ &nbsp;</a>
+                <a href="#finalistas" class="bg-accent hover:opacity-70 text-white font-bold px-8 py-3 rounded-full transition">&nbsp; FINALISTAS &nbsp;</a>
             </div>
             
             <div class="flex flex-wrap justify-center gap-4 mb-10">
@@ -64,12 +64,62 @@
         </div>
     </header>
 
-    <div class="sub-nav flex flex-wrap justify-center">
+    <div class="sub-nav flex flex-wrap justify-center bg-slate-50">
         <a href="#presentacion">Presentación</a>
         <a href="#bases">¿Como participar?</a>
         <a href="#cronograma">Cronograma</a>
         <a href="#videos">Galería de videos</a>
     </div>
+
+
+    <!-- -------------
+    FINALISTAS
+    ------------- -->
+
+    <section id="finalistas" class="py-12 bg-white">
+        <div class="container mx-auto max-w-7xl px-6 lg:px-8">
+            
+            <div class="flex flex-col items-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-dark tracking-tight text-center">Participantes Clasificados</h2>
+                <div class="w-20 h-1 bg-brand mt-4 rounded-full"></div>
+                <p class="text-slate-500 mt-4 text-center max-w-2xl">Lista oficial de los 8 estudiantes seleccionados para la presentación de monólogos científicos.</p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-lg border-t-4 border-brand overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse min-w-[1000px]">
+                        <thead class="bg-dark text-white">
+                            <tr>
+                                <th class="py-5 px-6 font-bold uppercase tracking-wider text-sm w-32">Región</th>
+                                <th class="py-5 px-6 font-bold uppercase tracking-wider text-sm">Institución Educativa</th>
+                                <th class="py-5 px-6 font-bold uppercase tracking-wider text-sm">Club de Ciencia</th>
+                                <th class="py-5 px-6 font-bold uppercase tracking-wider text-sm">Nombres y Apellidos</th>
+                                <th class="py-5 px-6 font-bold uppercase tracking-wider text-sm text-center">Grado</th>
+                                <th class="py-5 px-6 font-bold uppercase tracking-wider text-sm w-1/5">Título del Monólogo</th>
+                                <th class="py-5 px-6 font-bold uppercase tracking-wider text-sm text-center">Condición</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody id="tabla-participantes" class="divide-y divide-slate-100">
+                            <tr>
+                                <td colspan="7" class="py-8 px-6 text-center text-slate-500 font-medium">
+                                    <span class="animate-pulse">Cargando datos desde Google Sheets...</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <a class="text-sm">*Pendiente: Texto del monólogo incompleto. Clasificación a la final condicionado a la subsanación. Enviar el texto completo al correo popularizacion@concytec.gob.pe hasta el lunes 6 de julio.</a>
+        </div>
+        
+    </section>
+
+
+
+    <!-- ---------------
+    PRESENTACION
+    --------------- -->
 
     <section id="presentacion" class="py-20 container mx-auto max-w-6xl px-6">
         <h2 class="text-3xl font-bold text-center mb-6 text-dark">Presentación</h2>
