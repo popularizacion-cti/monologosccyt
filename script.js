@@ -36,76 +36,6 @@ const countdownInterval = setInterval(() => {
 }, 1000);
 
 
-// 3. Integración con Google Sheets para Galería de Videos
-const SHEET_ID = '1zC2Fuzg4avjnql-gENAb-qqXZgoZxsJJIV0gihzCbtA';
-const SHEET_NAME = 'Hoja 1'; 
-const URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${SHEET_NAME}`;
-
-fetch(URL)
-    .then(res => res.text())
-    .then(data => {
-        // Formatear la respuesta string-JSON de Google API
-        const json = JSON.parse(data.substr(47).slice(0, -2));
-        const rows = json.table.rows;
-        const contenedor = document.getElementById('contenedor-videos');
-        contenedor.innerHTML = ''; 
-
-        // Omitir cabecera y renderizar filas
-        rows.slice(1).forEach(row => {
-            const idVideo = row.c[0].v;
-            const titulo = row.c[1] ? row.c[1].v : "Sin título";
-            const descripcion = row.c[2] ? row.c[2].v : "";
-
-            const thumbHD = `https://img.youtube.com/vi/${idVideo}/maxresdefault.jpg`;
-            const thumbSD = `https://img.youtube.com/vi/${idVideo}/hqdefault.jpg`;
-
-            const card = `
-                <div class="bg-white rounded-2xl shadow-xl hover:scale-105 transition transform border-t-4 border-accent overflow-hidden flex flex-col">
-                    <div class="aspect-video relative group cursor-pointer bg-black overflow-hidden" 
-                        id="container-${idVideo}"
-                        onclick="loadVideo('${idVideo}')">
-                        
-                        <img src="${thumbSD}" 
-                            onerror="this.src='${thumbHD}'" 
-                            alt="${titulo}" 
-                            class="w-full h-full object-cover object-center transform scale-[1.02] transition">
-                        
-                        <div class="absolute inset-0 flex items-center justify-center bg-black/10 group-hover:bg-black/40 transition">
-                            <div class="bg-red-600 text-white w-12 h-12 flex items-center justify-center rounded-full shadow-lg group-hover:scale-110 transition transform">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 ml-0.5">
-                                    <path fill-rule="evenodd" d="M4.5 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" clip-rule="evenodd" />
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="p-6 flex-grow">
-                        <h3 class="text-xl font-bold mb-2 text-dark">${titulo}</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed">${descripcion}</p>
-                    </div>
-                </div>
-            `;
-            contenedor.innerHTML += card;
-        });
-    })
-    .catch(err => {
-        console.error(err);
-        document.getElementById('contenedor-videos').innerHTML = '<p class="text-red-500 text-center col-span-full">Error al cargar los videos.</p>';
-    });
-
-// 4. Función global para reproducir los vídeos en iFrame al hacer clic
-function loadVideo(id) {
-    const container = document.getElementById(`container-${id}`);
-    container.innerHTML = `
-        <iframe 
-            class="w-full h-full" 
-            src="https://www.youtube.com/embed/${id}?autoplay=1" 
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen>
-        </iframe>`;
-}
-
 
 // ---------
 // FINALISTAS
@@ -177,14 +107,14 @@ document.addEventListener('DOMContentLoaded', async () => {
             tr.className = 'hover:bg-slate-50 transition-colors group';
             
             tr.innerHTML = `
-                <td class="py-4 px-6 text-slate-700 font-medium bg-slate-50/30">${valorRegion}</td>
-                <td class="py-4 px-6 text-slate-600 text-sm">${valorInstitucion}</td>
-                <td class="py-4 px-6 text-slate-600 text-sm italic">${valorClub}</td>
-                <td class="py-4 px-6 text-dark font-bold">${valorNombres}</td>
-                <td class="py-4 px-6 text-slate-600 font-medium text-center">${valorGrado}</td>
-                <td class="py-4 px-6 text-slate-700 font-medium leading-relaxed">${valorTitulo}</td>
-                <td class="py-4 px-6 text-center">
-                    <span class="inline-block px-3 py-1 bg-brand/10 text-brand font-bold text-xs uppercase tracking-wide rounded-full">
+                <td class="py-3 px-4 text-slate-700 font-medium bg-slate-50/30 text-sm">${valorRegion}</td>
+                <td class="py-3 px-4 text-slate-600 text-sm">${valorInstitucion}</td>
+                <td class="py-3 px-4 text-slate-600 text-sm italic">${valorClub}</td>
+                <td class="py-3 px-4 text-dark font-bold text-sm">${valorNombres}</td>
+                <td class="py-3 px-4 text-slate-600 font-medium text-center text-sm">${valorGrado}</td>
+                <td class="py-3 px-4 text-slate-700 font-medium leading-tight text-sm">${valorTitulo}</td>
+                <td class="py-3 px-4 text-center">
+                    <span class="inline-block px-3 py-1 bg-brand/10 text-brand font-bold text-[11px] uppercase tracking-wide rounded-full">
                         ${valorCondicion}
                     </span>
                 </td>
@@ -234,3 +164,96 @@ function parsearFilaCSV(linea) {
     resultado.push(celdaActual.trim()); // Añadir la última celda
     return resultado;
 }
+
+// 3. Integración con Google Sheets para Galería de Videos
+const SHEET_ID = '1zC2Fuzg4avjnql-gENAb-qqXZgoZxsJJIV0gihzCbtA';
+const SHEET_NAME = 'Hoja 1'; 
+const URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${SHEET_NAME}`;
+
+fetch(URL)
+    .then(res => res.text())
+    .then(data => {
+        const json = JSON.parse(data.substr(47).slice(0, -2));
+        const rows = json.table.rows;
+        const contenedor = document.getElementById('contenedor-videos');
+        
+        let htmlTarjetas = ''; // Guardamos todo el HTML aquí para mayor rendimiento
+
+        rows.slice(1).forEach(row => {
+            const idVideo = row.c[0].v;
+            const titulo = row.c[1] ? row.c[1].v : "Sin título";
+            const descripcion = row.c[2] ? row.c[2].v : "";
+
+            const thumbHD = `https://img.youtube.com/vi/${idVideo}/maxresdefault.jpg`;
+            const thumbSD = `https://img.youtube.com/vi/${idVideo}/hqdefault.jpg`;
+
+            // ¡IMPORTANTE! Aquí están las clases shrink-0, w-full, md:w-[calc(50%-12px)] y snap-center
+            const card = `
+                <div class="shrink-0 w-full md:w-[calc(50%-12px)] snap-center bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-xl transition-all duration-300 border-t-4 border-brand overflow-hidden flex flex-col">
+                    <div class="aspect-video relative group cursor-pointer bg-black overflow-hidden" 
+                        id="container-${idVideo}"
+                        onclick="loadVideo('${idVideo}')">
+                        
+                        <img src="${thumbSD}" 
+                            onerror="this.src='${thumbHD}'" 
+                            alt="${titulo}" 
+                            class="w-full h-full object-cover object-center transform group-hover:scale-[1.05] transition duration-500">
+                        
+                        <div class="absolute inset-0 flex items-center justify-center bg-black/10 group-hover:bg-black/40 transition duration-300">
+                            <div class="bg-red-600 text-white w-14 h-14 flex items-center justify-center rounded-full shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-7 h-7 ml-1">
+                                    <path fill-rule="evenodd" d="M4.5 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-6 flex-grow bg-white">
+                        <h3 class="text-xl font-bold mb-2 text-dark line-clamp-2">${titulo}</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed line-clamp-3">${descripcion}</p>
+                    </div>
+                </div>
+            `;
+            htmlTarjetas += card;
+        });
+        
+        // Imprimimos todas las tarjetas de una sola vez
+        contenedor.innerHTML = htmlTarjetas;
+    })
+    .catch(err => {
+        console.error(err);
+        document.getElementById('contenedor-videos').innerHTML = '<p class="text-red-500 text-center w-full py-12">Error al cargar los videos. Por favor, intenta nuevamente más tarde.</p>';
+    });
+
+// 4. Función global para reproducir los vídeos en iFrame al hacer clic
+function loadVideo(id) {
+    const container = document.getElementById(`container-${id}`);
+    container.innerHTML = `
+        <iframe 
+            class="w-full h-full" 
+            src="https://www.youtube.com/embed/${id}?autoplay=1" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+        </iframe>`;
+}
+
+// 5. Lógica de las flechas del carrusel
+document.addEventListener("DOMContentLoaded", () => {
+    const contenedorVideos = document.getElementById('contenedor-videos');
+    const btnPrev = document.getElementById('btn-prev-video');
+    const btnNext = document.getElementById('btn-next-video');
+
+    if(btnNext && btnPrev && contenedorVideos) {
+        btnNext.addEventListener('click', () => {
+            // Avanza exactamente la mitad del ancho visible (1 tarjeta y su margen)
+            const scrollAmount = contenedorVideos.clientWidth / 2; 
+            contenedorVideos.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        });
+
+        btnPrev.addEventListener('click', () => {
+            const scrollAmount = contenedorVideos.clientWidth / 2;
+            contenedorVideos.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        });
+    }
+});
